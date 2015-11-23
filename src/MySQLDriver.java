@@ -161,6 +161,11 @@ public class MySQLDriver {
 					
 				}
 			}
+			
+			Creature cc = readCharacter(username);
+			System.out.println(cc.getGold());
+			System.out.println(cc.getEquipments()[0]);
+			
 		}
 		catch(SQLException e)
 		{

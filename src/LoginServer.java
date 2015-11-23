@@ -151,18 +151,15 @@ class Communicator extends Thread
 						if (obj instanceof LoginInfo)
 						{
 							LoginInfo login = (LoginInfo) obj;
-							System.out.println("Goood");
 
 							MySQLDriver driver = new MySQLDriver();
 							driver.connect();
 							if (driver.doesExist(login.getUsername()))
 							{
-								System.out.println("Exist");
 								int dbPassword = driver.getPassword(login.getUsername());
 								int hash = LoginServer.hash(login.getPassword());
 								if (dbPassword == hash)
 								{
-									System.out.println("Login Successfully");
 									sendObject(Constants.LOGINSUCCESS);
 									username = login.getUsername();
 
@@ -178,13 +175,11 @@ class Communicator extends Thread
 								}
 								else
 								{
-									System.out.println("Authenticate fails");
 									sendObject(Constants.AUTHENTICATEFAIL);
 								}
 							}
 							else
 							{
-								System.out.println("Cannot find user");
 								sendObject(Constants.USERNOTFOUND);
 							}
 						}
@@ -201,12 +196,10 @@ class Communicator extends Thread
 							driver.connect();
 							if (driver.doesExist(login.getUsername()))
 							{
-								System.out.println("Exist");
 								sendObject(Constants.USERNAMEOCCUPIED);
 							}
 							else
 							{
-								System.out.println("Not Exist");
 								int hash = LoginServer.hash(login.getPassword());
 								driver.add(login.getUsername(), hash);
 
