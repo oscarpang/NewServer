@@ -281,19 +281,19 @@ public class MySQLDriver {
 	
 	public Vector<Creature> getSortedCreatures()
 	{
-//		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
-//		{
-//
-//			@Override
-//			public int compare(Creature o1, Creature o2)
-//			{
-//				if(o1.getCP() >= o2.getCP())
-//					return 1;
-//				else
-//					return 0;
-//			}
-//			
-//		});
+		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
+		{
+
+			@Override
+			public int compare(Creature o1, Creature o2)
+			{
+				if(o1.getCP() >= o2.getCP())
+					return 1;
+				else
+					return 0;
+			}
+			
+		});
 		
 		
 		Vector<Creature> sortedCreatureList = new Vector<>();
