@@ -11,7 +11,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.sql.*;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
@@ -296,8 +295,8 @@ public class MySQLDriver {
 				byte[] data = (byte [])result.getObject(1);
 				Creature aCreature = (Creature)Serializer.deserialize(data);
 				
-				sortedCreatureList.add(aCreature);
-//				creatureList.add(aCreature);
+//				sortedCreatureList.add(aCreature);
+				creatureList.add(aCreature);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -314,16 +313,16 @@ public class MySQLDriver {
 		}
 		
 		
-//		int counter = 0;
-//		while(!creatureList.isEmpty())
-//		{
-//			if(counter > 9)
-//			{
-//				break;
-//			}
-//			sortedCreatureList.add(creatureList.poll());
-//			counter++;
-//		}
+		int counter = 0;
+		while(!creatureList.isEmpty())
+		{
+			if(counter > 9)
+			{
+				break;
+			}
+			sortedCreatureList.add(creatureList.poll());
+			counter++;
+		}
 		
 		return sortedCreatureList;
 	}
