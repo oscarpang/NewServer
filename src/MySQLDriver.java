@@ -281,20 +281,23 @@ public class MySQLDriver {
 	
 	public Vector<Creature> getSortedCreatures()
 	{
-		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
-		{
-
-			@Override
-			public int compare(Creature o1, Creature o2)
-			{
-				if(o1.getCP() >= o2.getCP())
-					return 1;
-				else
-					return 0;
-			}
-			
-		});
+//		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
+//		{
+//
+//			@Override
+//			public int compare(Creature o1, Creature o2)
+//			{
+//				if(o1.getCP() >= o2.getCP())
+//					return 1;
+//				else
+//					return 0;
+//			}
+//			
+//		});
 		
+		
+		Vector<Creature> sortedCreatureList = new Vector<>();
+
 		
 		try{
 			PreparedStatement ps = con.prepareStatement(getAllCharacter);
@@ -302,24 +305,24 @@ public class MySQLDriver {
 			while(result.next()) 
 			{
 				Creature aCreature = (Creature)result.getObject(1);
-				creatureList.add(aCreature);
+				sortedCreatureList.add(aCreature);
+//				creatureList.add(aCreature);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
-		Vector<Creature> sortedCreatureList = new Vector<>();
-		int counter = 0;
-		while(!creatureList.isEmpty())
-		{
-			if(counter > 9)
-			{
-				break;
-			}
-			sortedCreatureList.add(creatureList.poll());
-			counter++;
-		}
+//		int counter = 0;
+//		while(!creatureList.isEmpty())
+//		{
+//			if(counter > 9)
+//			{
+//				break;
+//			}
+//			sortedCreatureList.add(creatureList.poll());
+//			counter++;
+//		}
 		
 		return sortedCreatureList;
 	}
