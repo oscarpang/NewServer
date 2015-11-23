@@ -311,6 +311,11 @@ public class MySQLDriver {
 		
 		for(int i = 0; i < 9; i++)
 		{
+			if(creatureList.isEmpty())
+			{
+				break;
+			}
+			
 			double maxCP = 0;
 			int maxIndex = 0;
 			for(int j = 0; j < creatureList.size(); j++)
@@ -321,22 +326,11 @@ public class MySQLDriver {
 					maxIndex = j;
 				}
 			}
+
 			sortedCreatureList.add(creatureList.get(maxIndex));
 			creatureList.remove(maxIndex);
 		}
-		
-		
-//		int counter = 0;
-//		while(!creatureList.isEmpty())
-//		{
-//			if(counter > 9)
-//			{
-//				break;
-//			}
-//			sortedCreatureList.add(creatureList.poll());
-//			counter++;
-//		}
-//		
+
 		return sortedCreatureList;
 	}
 	
