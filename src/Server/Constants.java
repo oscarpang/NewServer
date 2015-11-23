@@ -16,5 +16,7 @@ public class Constants
 	public static Signal CREATNEWCHARACTER = new Signal("CREATNEWCHARACTER");
 	
 	public static Signal SAVECHARACTER = new Signal("SAVECHARACTER");
+	
+	public static Signal LEADERBOARD = new Signal("LEADERBOARD");
 
 }

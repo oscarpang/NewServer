@@ -10,6 +10,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.sql.*;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Vector;
 
 public class MySQLDriver {
 	
@@ -24,7 +27,8 @@ public class MySQLDriver {
 	private static final String getUserID = "SELECT * FROM LoginInfo WHERE USERNAME = ?";
 	
 	private static final String selectCharacter = "SELECT * FROM characters WHERE USERID = ?";
-	
+	private static final String getAllCharacter = "SELECT characterObject FROM characters WHERE userID > 0";
+
 	
 	
 //	private final static String updateTable = "UPDATE FACTORYORDERS SET CREATED = ? WHERE NAME = ?";
@@ -273,6 +277,51 @@ public class MySQLDriver {
 		}
 		
 		return false;
+	}
+	
+	public Vector<Creature> getSortedCreatures()
+	{
+		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
+		{
+
+			@Override
+			public int compare(Creature o1, Creature o2)
+			{
+				if(o1.getCP() >= o2.getCP())
+					return 1;
+				else
+					return 0;
+			}
+			
+		});
+		
+		
+		try{
+			PreparedStatement ps = con.prepareStatement(getAllCharacter);
+			ResultSet result = ps.executeQuery();
+			while(result.next()) 
+			{
+				Creature aCreature = (Creature)result.getObject(1);
+				creatureList.add(aCreature);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Vector<Creature> sortedCreatureList = new Vector<>();
+		int counter = 0;
+		while(!creatureList.isEmpty())
+		{
+			if(counter > 9)
+			{
+				break;
+			}
+			sortedCreatureList.add(creatureList.poll());
+			counter++;
+		}
+		
+		return sortedCreatureList;
 	}
 	
 	public void stop()

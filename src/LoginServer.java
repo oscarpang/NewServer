@@ -182,6 +182,8 @@ class Communicator extends Thread
 							{
 								sendObject(Constants.USERNOTFOUND);
 							}
+							driver.stop();
+
 						}
 					}
 					else if (signal.equals(Constants.REGISTER))
@@ -206,6 +208,7 @@ class Communicator extends Thread
 								sendObject(Constants.REGISTERSUCCESS);
 								username = login.getUsername();
 							}
+							driver.stop();
 						}
 					}
 					else if (signal.equals(Constants.CREATNEWCHARACTER))
@@ -219,6 +222,7 @@ class Communicator extends Thread
 							MySQLDriver driver = new MySQLDriver();
 							driver.connect();
 							driver.addNewCharacter(username, creature);
+							driver.stop();
 						}
 						else
 						{
@@ -242,11 +246,21 @@ class Communicator extends Thread
 							MySQLDriver driver = new MySQLDriver();
 							driver.connect();
 							driver.updateCharacter(username, creature);
+							driver.stop();
 						}
 						else
 						{
 							System.out.println("Server: Username is null when trying to update character");
 						}
+					}
+					else if(signal.equals(Constants.LEADERBOARD))
+					{
+						MySQLDriver driver = new MySQLDriver();
+						driver.connect();
+						Vector<Creature> sortedCreatureList = driver.getSortedCreatures();
+						driver.stop();
+						sendObject(Constants.LEADERBOARD);
+						sendObject(sortedCreatureList);
 					}
 				}
 			}
