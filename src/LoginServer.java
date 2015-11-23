@@ -212,7 +212,8 @@ class Communicator extends Thread
 					{
 						obj = ois.readObject();
 
-						Creature creature = (Creature) obj;
+						Creature creature = (Creature)obj;
+
 						if (username != null)
 						{
 							MySQLDriver driver = new MySQLDriver();
@@ -229,7 +230,9 @@ class Communicator extends Thread
 					{
 						System.out.println("Save character");
 						obj = ois.readObject();
-						Creature creature = (Creature)obj;
+						
+						byte[] data = (byte[]) obj;
+						Creature creature = (Creature) Serializer.deserialize(data);
 						System.out.println(creature.getGold());
 						System.out.println(creature.getInventory().size());
 						
