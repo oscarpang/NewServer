@@ -304,11 +304,23 @@ public class MySQLDriver {
 			ResultSet result = ps.executeQuery();
 			while(result.next()) 
 			{
-				Creature aCreature = (Creature)result.getObject(1);
+				byte[] data = (byte [])result.getObject(1);
+				Creature aCreature = (Creature)Serializer.deserialize(data);
+				
 				sortedCreatureList.add(aCreature);
 //				creatureList.add(aCreature);
 			}
 		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
