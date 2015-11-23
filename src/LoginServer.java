@@ -230,6 +230,8 @@ class Communicator extends Thread
 						System.out.println("Save character");
 						obj = ois.readObject();
 						Creature creature = (Creature)obj;
+						System.out.println(creature.getGold());
+						System.out.println(creature.getInventory().size());
 						
 						if(username!=null)
 						{
