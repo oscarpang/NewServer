@@ -294,8 +294,6 @@ public class MySQLDriver {
 			{
 				byte[] data = (byte [])result.getObject(1);
 				Creature aCreature = (Creature)Serializer.deserialize(data);
-				
-//				sortedCreatureList.add(aCreature);
 				creatureList.add(aCreature);
 			}
 		} catch(SQLException e) {
