@@ -210,7 +210,7 @@ public class Creature extends AttributeHolder {
 
 	public void addExp(int exp) {
 		this.exp += exp;
-		if (exp >= expNeeded) {
+		if (this.exp >= expNeeded) {
 			upgrade();
 		}
 	}
