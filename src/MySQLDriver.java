@@ -281,8 +281,7 @@ public class MySQLDriver {
 	
 	public Vector<Creature> getSortedCreatures()
 	{
-		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new CreatureComparator());
-		
+		Vector<Creature> creatureList = new Vector<>();
 		
 		Vector<Creature> sortedCreatureList = new Vector<>();
 
@@ -310,18 +309,34 @@ public class MySQLDriver {
 			e.printStackTrace();
 		}
 		
-		
-		int counter = 0;
-		while(!creatureList.isEmpty())
+		for(int i = 0; i < 9; i++)
 		{
-			if(counter > 9)
+			double maxCP = 0;
+			int maxIndex = 0;
+			for(int j = 0; j < creatureList.size(); j++)
 			{
-				break;
+				if(creatureList.get(j).getCP() > maxCP)
+				{
+					maxCP = creatureList.get(j).getCP();
+					maxIndex = j;
+				}
 			}
-			sortedCreatureList.add(creatureList.poll());
-			counter++;
+			sortedCreatureList.add(creatureList.get(maxIndex));
+			creatureList.remove(maxIndex);
 		}
 		
+		
+//		int counter = 0;
+//		while(!creatureList.isEmpty())
+//		{
+//			if(counter > 9)
+//			{
+//				break;
+//			}
+//			sortedCreatureList.add(creatureList.poll());
+//			counter++;
+//		}
+//		
 		return sortedCreatureList;
 	}
 	
