@@ -5,6 +5,7 @@
 import com.mysql.jdbc.Driver;
 
 import Data.Creature;
+import Server.CreatureComparator;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -281,19 +282,7 @@ public class MySQLDriver {
 	
 	public Vector<Creature> getSortedCreatures()
 	{
-		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new Comparator<Creature>()
-		{
-
-			@Override
-			public int compare(Creature o1, Creature o2)
-			{
-				if(o1.getCP() >= o2.getCP())
-					return 1;
-				else
-					return 0;
-			}
-			
-		});
+		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>(10, new CreatureComparator());
 		
 		
 		Vector<Creature> sortedCreatureList = new Vector<>();
