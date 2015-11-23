@@ -21,7 +21,7 @@ public class LoginServer
 		try
 		{
 			System.out.println("Starting Chat Server");
-			ss = new ServerSocket(6799);
+			ss = new ServerSocket(6789);
 			while (true)
 			{
 				System.out.println("Waiting for client to connect...");
