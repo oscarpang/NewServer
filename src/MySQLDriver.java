@@ -143,6 +143,11 @@ public class MySQLDriver {
 		try
 		{
 			System.out.println(username + " try to save character");
+			
+			System.out.println("Before update");
+			System.out.println(creature.getGold());
+			System.out.println(creature.getEquipments()[0]);
+			
 			if(hasCharacter(username))
 			{
 				int userID = getUserID(username);
@@ -163,6 +168,7 @@ public class MySQLDriver {
 			}
 			
 			Creature cc = readCharacter(username);
+			System.out.println("After update");
 			System.out.println(cc.getGold());
 			System.out.println(cc.getEquipments()[0]);
 			
