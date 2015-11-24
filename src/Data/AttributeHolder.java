@@ -267,4 +267,17 @@ public class AttributeHolder implements Serializable, Comparable<AttributeHolder
 		else
 			return 0;
 	}
+	
+	public boolean equals(Object o)
+	{
+		if(o instanceof AttributeHolder)
+		{
+			Creature c = (Creature)o;
+			if(this.getCP() == c.getCP())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
