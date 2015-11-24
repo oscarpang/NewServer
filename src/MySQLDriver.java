@@ -281,7 +281,8 @@ public class MySQLDriver {
 	
 	public Vector<Creature> getSortedCreatures()
 	{
-		Vector<Creature> creatureList = new Vector<>();
+//		Vector<Creature> creatureList = new Vector<>();
+		PriorityQueue<Creature> creatureList = new PriorityQueue<>(new CreatureComparator());
 		
 		Vector<Creature> sortedCreatureList = new Vector<>();
 
@@ -309,28 +310,39 @@ public class MySQLDriver {
 			e.printStackTrace();
 		}
 		
-		for(int i = 0; i < 9; i++)
+//		for(int i = 0; i < 9; i++)
+//		{
+//			if(creatureList.isEmpty())
+//			{
+//				break;
+//			}
+//			
+//			double maxCP = 0;
+//			int maxIndex = 0;
+//			for(int j = 0; j < creatureList.size(); j++)
+//			{
+//				if(creatureList.get(j).getCP() > maxCP)
+//				{
+//					maxCP = creatureList.get(j).getCP();
+//					maxIndex = j;
+//				}
+//			}
+//
+//			sortedCreatureList.add(creatureList.get(maxIndex));
+//			creatureList.remove(maxIndex);
+//		}
+		for(int i = 0; i< 9; i++)
 		{
 			if(creatureList.isEmpty())
-			{
 				break;
-			}
 			
-			double maxCP = 0;
-			int maxIndex = 0;
-			for(int j = 0; j < creatureList.size(); j++)
-			{
-				if(creatureList.get(j).getCP() > maxCP)
-				{
-					maxCP = creatureList.get(j).getCP();
-					maxIndex = j;
-				}
-			}
-
-			sortedCreatureList.add(creatureList.get(maxIndex));
-			creatureList.remove(maxIndex);
+			Creature c = creatureList.poll();
+			System.out.println(c.getCP());
+			sortedCreatureList.add(c);
 		}
-
+		
+		
+		
 		return sortedCreatureList;
 	}
 	
