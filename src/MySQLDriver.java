@@ -331,17 +331,7 @@ public class MySQLDriver {
 			sortedCreatureList.add(creatureList.get(maxIndex));
 			creatureList.remove(maxIndex);
 		}
-//		for(int i = 0; i< 9; i++)
-//		{
-//			if(creatureList.isEmpty())
-//				break;
-//			
-//			Creature c = creatureList.poll();
-//			System.out.println(c.getName());
-//			System.out.println(c.getCP());
-//			sortedCreatureList.add(c);
-//		}
-		
+
 		
 		
 		return sortedCreatureList;
