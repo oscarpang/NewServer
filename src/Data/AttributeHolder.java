@@ -1,7 +1,7 @@
 package Data;
 import java.io.Serializable;
 
-public class AttributeHolder implements Serializable{
+public class AttributeHolder implements Serializable, Comparable<AttributeHolder>{
 	private static final long serialVersionUID = -4188157438991597320L;
 	private int HP;
 	private int HPBuff;
@@ -252,4 +252,19 @@ public class AttributeHolder implements Serializable{
 		this.magicDefenceBuff = magicDefenceBuff;
 	}
 
+	
+	public double getCP()
+	{
+		double cp = getHPBuff() + getMPBuff() + getPhysicalAttackBuff() + getPhysicalDefenceBuff() + getMagicAttackBuff() + getMagicDefenceBuff() + getLuckBuff() + getCriticalHitBuff();
+		return cp;
+	}
+
+	@Override
+	public int compareTo(AttributeHolder o)
+	{
+		if(this.getCP() > o.getCP())
+			return 1;
+		else
+			return 0;
+	}
 }

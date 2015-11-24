@@ -366,10 +366,4 @@ public class Creature extends AttributeHolder {
 		return sb.toString();
 	}
 
-	
-	public double getCP()
-	{
-		double cp = getHPBuff() + getMPBuff() + getPhysicalAttackBuff() + getPhysicalDefenceBuff() + getMagicAttackBuff() + getMagicDefenceBuff() + getLuckBuff() + getCriticalHitBuff();
-		return cp;
-	}
 }

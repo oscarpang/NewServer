@@ -282,7 +282,7 @@ public class MySQLDriver {
 	public Vector<Creature> getSortedCreatures()
 	{
 //		Vector<Creature> creatureList = new Vector<>();
-		PriorityQueue<Creature> creatureList = new PriorityQueue<>(new CreatureComparator());
+		PriorityQueue<Creature> creatureList = new PriorityQueue<Creature>();
 		
 		Vector<Creature> sortedCreatureList = new Vector<>();
 
