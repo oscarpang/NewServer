@@ -337,6 +337,7 @@ public class MySQLDriver {
 				break;
 			
 			Creature c = creatureList.poll();
+			System.out.println(c.getName());
 			System.out.println(c.getCP());
 			sortedCreatureList.add(c);
 		}
